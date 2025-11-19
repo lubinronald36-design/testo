@@ -38,6 +38,19 @@
  </div>
 
  <script>
+ function displayMessage(sender, message) {
+ const messagesDiv = document.getElementById('messages');
+ const messageElement = document.createElement('div');
+ messageElement.className = sender === 'user' ? 'user-message' : 'system-message';
+ messageElement.textContent = ${sender === 'user' ? 'You' : 'System'}: ${message};
+ messagesDiv.appendChild(messageElement);
+ messagesDiv.scrollTop = messagesDiv.scrollHeight;
+ }
+
+ document.addEventListener('DOMContentLoaded', function() {
+ displayMessage('system', "Okay, I'm the one you have to speak to. Blah blah blah.");
+ });
+
  document.getElementById('send-button').addEventListener('click', function() {
  const chatInput = document.getElementById('chat-input');
  const message = chatInput.value.trim();
@@ -48,15 +61,6 @@
  chatInput.value = '';
  }
  });
-
- function displayMessage(sender, message) {
- const messagesDiv = document.getElementById('messages');
- const messageElement = document.createElement('div');
- messageElement.className = sender === 'user' ? 'user-message' : 'system-message';
- messageElement.textContent = ${sender === 'user' ? 'You' : 'System'}: ${message};
- messagesDiv.appendChild(messageElement);
- messagesDiv.scrollTop = messagesDiv.scrollHeight;
- }
 
  function generateResponse(message) {
  const response = You said: ${message}. That's interesting!'s interesting!`;
